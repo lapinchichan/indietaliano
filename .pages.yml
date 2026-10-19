@@ -1,0 +1,132 @@
+# Indietaliano · Pages CMS. Salvare nella radice del repository GitHub.
+media:
+  - name: immagini
+    label: Screenshot e copertine
+    input: assets/screenshots
+    output: /assets/screenshots
+    extensions: [png, jpg, jpeg, webp]
+    rename: safe
+
+content:
+  - name: giochi
+    label: Videogiochi
+    type: collection
+    path: content/games
+    format: json
+    filename:
+      template: "{id}.json"
+      field: create
+    operations:
+      create: true
+      rename: false
+      delete: true
+    view:
+      primary: title
+      fields: [title, status, isDemo]
+      sort: title
+      order: asc
+    fields:
+      - name: title
+        label: Titolo del gioco
+        type: string
+        required: true
+      - name: id
+        label: Identificativo URL (slug)
+        type: string
+        required: true
+        description: Usa solo lettere minuscole, numeri e trattini. Non cambiarlo dopo aver creato il gioco.
+        pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      - name: developer
+        label: Sviluppatore
+        type: string
+      - name: steamUrl
+        label: Pagina Steam ufficiale (HTTPS)
+        type: string
+      - name: releaseDate
+        label: Data di uscita (testo)
+        type: string
+      - name: genre
+        label: Genere
+        type: string
+      - name: description
+        label: Breve presentazione
+        type: text
+      - name: status
+        label: Stato della traduzione
+        type: select
+        required: true
+        default: da-verificare
+        options:
+          values:
+            - name: da-verificare
+              label: Da verificare
+            - name: in-lavorazione
+              label: In lavorazione
+            - name: in-test
+              label: In test
+            - name: disponibile
+              label: Disponibile
+      - name: isDemo
+        label: Scheda ancora in preparazione (blocca il download)
+        type: boolean
+        default: true
+        description: Disattiva soltanto dopo aver verificato la patch e tutti i dati. La pubblicazione verifica comunque il link, la versione e le istruzioni.
+      - name: accent
+        label: Decorazione del gioco
+        type: select
+        default: road
+        options:
+          values:
+            - name: road
+              label: Viaggio
+            - name: haunts
+              label: Horror
+            - name: everholm
+              label: Natura
+            - name: application
+              label: Documenti
+      - name: platform
+        label: Piattaforma
+        type: string
+        default: PC
+      - name: gameVersion
+        label: Versione del gioco testata
+        type: string
+      - name: patchVersion
+        label: Versione della traduzione
+        type: string
+      - name: updated
+        label: Ultimo aggiornamento (testo)
+        type: string
+      - name: releaseNotes
+        label: Descrizione del lavoro e note
+        type: text
+      - name: installSteps
+        label: Passaggi di installazione
+        type: string
+        list: true
+      - name: screenshots
+        label: Screenshot della traduzione
+        type: image
+        options:
+          media: immagini
+          multiple:
+            max: 8
+          extensions: [png, jpg, jpeg, webp]
+      - name: downloadUrl
+        label: Link HTTPS della patch verificata
+        type: string
+        description: Lascia vuoto fino alla pubblicazione reale. Non inserire link privati o credenziali.
+
+  - name: impostazioni
+    label: Impostazioni del sito
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: donationUrl
+        label: Pagina di donazione (HTTPS)
+        type: string
+        description: Lascia vuoto fino a quando attivi il servizio. Le traduzioni restano gratuite.

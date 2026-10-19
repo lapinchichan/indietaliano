@@ -1,0 +1,89 @@
+/* Indietaliano 3.4 — identita' tipografica Fraunces + DM Sans.
+   Caricato DOPO retro-editorial.css: cambia soltanto la tipografia.
+   Font esterni da Google Fonts; nessun file font e' incluso nello ZIP. */
+:root {
+  --display-font: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --ui-font: 'DM Sans', Arial, Helvetica, sans-serif;
+}
+body,button,input,select,textarea {font-family:var(--ui-font)}
+/* La firma del sito rimane moderna e facile da riconoscere. */
+.type-logo,.footer-title {font-family:var(--ui-font);font-weight:700;letter-spacing:-.075em}
+/* Titoli editoriali, pesi e tracking adatti alle proporzioni di Fraunces. */
+.simple-hero h1 {
+  font-family:var(--display-font);
+  font-weight:600;
+  font-optical-sizing:auto;
+  font-size:clamp(62px,6.9vw,101px);
+  line-height:1.015;
+  letter-spacing:-.053em;
+  max-width:970px;
+}
+.simple-hero h1 em {
+  font-family:var(--display-font);
+  font-weight:500;
+  font-style:italic;
+  letter-spacing:-.044em;
+}
+.home-page .archive-head h2 {
+  font-family:var(--display-font);
+  font-weight:600;
+  line-height:1.07;
+  font-size:clamp(42px,4.5vw,59px);
+  letter-spacing:-.042em;
+}
+.home-page .item-title strong {
+  font-family:var(--ui-font);
+  font-weight:700;
+  line-height:1.16;
+  letter-spacing:-.035em;
+  font-size:clamp(21px,2.1vw,28px);
+}
+.home-page .support-intro h2 {
+  font-family:var(--display-font);
+  font-weight:600;
+  font-size:clamp(28px,3vw,41px);
+  letter-spacing:-.04em;
+  line-height:1.14;
+}
+.dossier-title,.dossier-chapter h2,.dossier-factbox h2,.next-story h2 {
+  font-family:var(--display-font);
+  font-weight:600;
+  font-optical-sizing:auto;
+  letter-spacing:-.045em;
+}
+.dossier-title {
+  font-size:clamp(58px,6.6vw,106px);
+  line-height:1.03;
+  overflow-wrap:break-word;
+}
+.dossier-chapter h2 {line-height:1.12;letter-spacing:-.039em}
+.dossier-factbox h2 {line-height:1.18;letter-spacing:-.03em}
+.next-story h2 {line-height:1.09;letter-spacing:-.038em}
+/* I metadati retrò rimangono monospazio, leggibili ma discreti. */
+.home-page .archive-stamp,.item-num,.dossier-chapter-name {font-family:var(--mono)}
+.mast-nav,.theme-button,.archive-search,.filter-chip,.item-status,.dossier-description,.dossier-faq,.fact-row,.support-small {font-family:var(--ui-font)}
+@media(max-width:820px) {
+  .simple-hero h1 {font-size:clamp(53px,8.6vw,80px);line-height:1.025}
+  .dossier-title {font-size:clamp(56px,10vw,92px)}
+}
+@media(max-width:560px) {
+  .simple-hero h1 {font-size:clamp(43px,11.5vw,63px);line-height:1.04;letter-spacing:-.055em}
+  .home-page .archive-head h2 {font-size:39px}
+  .home-page .item-title strong {font-size:clamp(19px,5.1vw,25px);overflow-wrap:break-word}
+  .dossier-title {font-size:clamp(49px,11.8vw,71px);line-height:1.05;letter-spacing:-.05em}
+  .dossier-chapter h2 {font-size:clamp(35px,9vw,42px)}
+  .next-story h2 {font-size:clamp(33px,9vw,42px)}
+}
+@media(max-width:390px) {
+  .simple-hero h1 {font-size:clamp(41px,11.35vw,45px)}
+}
+
+/* Indietaliano CMS: ingresso discreto, protezione demandata a GitHub/Pages CMS. */
+.nav-admin{opacity:.68}
+.nav-admin:hover{opacity:1}
+@media(max-width:660px){.mast-nav .nav-admin{display:none}}
+
+.footer-utilities{display:flex;align-items:center;gap:22px;font-size:11px;font-weight:700;white-space:nowrap;}
+.footer-utilities a{opacity:.8;text-decoration:underline;text-underline-offset:4px;}
+.footer-utilities a:hover{opacity:1;}
+@media(max-width:720px){.footer-utilities{margin-top:22px;white-space:normal;flex-wrap:wrap;gap:14px}}

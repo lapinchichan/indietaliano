@@ -1,0 +1,187 @@
+/* Indietaliano 3.3 · Retro Editorial
+   Foglio di identita' visiva, caricato per ultimo.
+   Crema, blu profondo, rosso arcade, blu ghiaccio.
+*/
+:root {
+  --paper: #FDFBF7;
+  --ink: #1B365D;
+  --muted: #53677D;
+  --acid: #DE3835;
+  --accent: #DE3835;
+  --accent-strong: #C72C2B;
+  --line: #CDD8E4;
+  --panel: #EFF6FF;
+  --soft: #FFFFFF;
+  --inverse: #162F52;
+  --rowhover: #E7F1FC;
+  --serif: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif;
+  --mono: ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  color-scheme: light;
+}
+:root.dark {
+  --paper: #101E33;
+  --ink: #F2F6FD;
+  --muted: #BED0E5;
+  --acid: #FF7775;
+  --accent: #FF7775;
+  --accent-strong: #C72C2B;
+  --line: #3E5878;
+  --panel: #1A3150;
+  --soft: #152944;
+  --inverse: #0D192B;
+  --rowhover: #234269;
+  color-scheme: dark;
+}
+body { background: var(--paper); color:var(--ink); }
+::selection {background:#F3BAB7;color:#1B365D}
+:root.dark ::selection {background:#B8403F;color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible {outline:3px solid var(--accent);outline-offset:3px}
+.skip-link {background:var(--accent-strong);color:#fff}
+
+/* Navigazione e marchio solo tipografico: niente logo definitivo. */
+.masthead {background:var(--paper);border-bottom:1px solid var(--line)}
+.type-logo,.footer-title {letter-spacing:-.075em}
+.type-logo i {color:var(--accent)}
+.mast-nav a:hover,.dossier-back:hover {color:var(--accent)}
+.theme-button {border:1px solid var(--line);border-radius:2px;background:var(--soft);color:var(--ink)}
+.theme-button:hover {background:var(--panel);border-color:var(--ink)}
+
+/* Hero: il testo scelto e' l'unico protagonista, segue subito il catalogo. */
+.simple-hero {background:var(--paper);border-bottom:1px solid var(--line)}
+.simple-hero-inner {padding-top:clamp(38px,5.3vw,67px);padding-bottom:clamp(36px,4.4vw,60px)}
+.simple-hero h1 {
+  color:var(--ink);font-family:var(--serif);font-size:clamp(62px,7vw,111px);
+  line-height:.985;letter-spacing:-.066em;font-weight:600;
+  max-width:960px;margin-bottom:25px;
+}
+.simple-hero h1 em {
+  position:relative;color:var(--accent);font-family:var(--serif);
+  font-weight:500;font-style:italic;letter-spacing:-.068em;
+}
+.simple-hero h1 em::after {
+  content:'';position:absolute;left:0;right:0;height:3px;
+  bottom:-.035em;background:currentColor;opacity:.38;transform:none;
+}
+.simple-hero p {max-width:610px;color:var(--muted);font-size:clamp(15px,1.4vw,18px);line-height:1.65}
+
+/* Catalogo: indice compatto, righe a blocchi blu ghiaccio, microdettagli arcade. */
+.home-page .archive-section {padding-top:35px;padding-bottom:76px}
+.home-page .archive-head {margin-bottom:23px}
+.home-page .archive-head h2 {font-family:var(--serif);font-weight:600;letter-spacing:-.045em;font-size:clamp(40px,4.7vw,59px)}
+.home-page .archive-head p {color:var(--muted)}
+.home-page .head-dot {color:var(--accent)}
+.home-page .archive-stamp {color:var(--ink);font-family:var(--mono);font-size:10px}
+.home-page .archive-shell {border-top:2px solid var(--ink)}
+.archive-search {background:var(--soft);border:1px solid var(--line);border-radius:2px}
+.archive-search:focus-within {border-color:var(--ink);box-shadow:0 0 0 2px var(--panel)}
+.archive-search input {color:var(--ink)}
+.archive-search input::placeholder {color:var(--muted)}
+.filter-chip {border-radius:2px;transition:background .16s,border-color .16s;color:var(--ink)}
+.filter-chip:hover {background:var(--panel);border-color:var(--line)}
+.filter-chip.is-active {background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.archive-list {display:grid;gap:8px}
+.home-page .archive-item {
+  background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--ink);
+  min-height:99px;transition:background .16s,border-color .16s;
+}
+.home-page .archive-item:last-child {border-bottom:1px solid var(--line)}
+.home-page .archive-item:hover,.home-page .archive-item:focus-visible {background:var(--rowhover);border-left-color:var(--accent)}
+.item-num {color:var(--accent-strong);font:700 12px/1 var(--mono);letter-spacing:-.04em}
+.item-emblem {border:1px solid rgba(27,54,93,.13);border-radius:2px;color:#1B365D;font-family:var(--mono);font-weight:700}
+.item-emblem.rose {background:#F7DFE0}
+.item-emblem.violet {background:#DFE6F9}
+.item-emblem.mint {background:#D9ECEE}
+.item-emblem.ochre {background:#F5E7CF}
+.item-title strong {font-family:var(--serif);font-weight:600;letter-spacing:-.035em;color:var(--ink)}
+.item-title small,.item-genre {color:var(--muted)}
+.item-status {color:var(--ink)}
+.item-status span {color:#75869A}
+.item-status.disponibile span {color:#16845D}
+.item-arrow {color:var(--accent);font-family:var(--mono)}
+.archive-footer {border:0;color:var(--muted)}
+.empty-message {background:var(--panel);border:1px solid var(--line)}
+.empty-message button {color:var(--ink);border-bottom-color:var(--accent)}
+
+/* La richiesta di sostegno deve rimanere discreta e completamente facoltativa. */
+.home-page .support {border-top:1px solid var(--line)}
+.home-page .support-symbol {color:var(--accent);font-family:var(--mono)}
+.home-page .support-intro h2 {font-family:var(--serif);font-weight:600;letter-spacing:-.04em}
+.home-page .support-intro p {color:var(--muted)}
+.home-page .support-intro strong {color:var(--ink)}
+.donation-cta,.next-story a,.dossier-download a:not(.dossier-steam-link) {
+  border-radius:2px;background:var(--accent-strong);color:#fff;
+}
+.donation-cta:hover,.next-story a:hover,.dossier-download a:not(.dossier-steam-link):hover {background:#A82020;color:#fff}
+.support-pending {background:var(--panel);border-radius:2px;color:var(--muted);border:1px solid var(--line)}
+.support-small {color:var(--muted)}
+.footer {background:#1B365D;color:#F8FAFC}
+.footer-title span {color:#FF7775}
+.footer-top {border-bottom-color:#657B98}
+.footer-top>a {border-color:#657B98}
+.footer-top>a:hover {background:#EFF6FF;color:#1B365D}
+.footer-bottom p {color:#DAE5F3}
+
+/* Schede: nota tecnica in blu ghiaccio e barra editoriale rossa. */
+.dossier-topbar {background:#1B365D;color:#fff}
+.dossier-back {color:var(--ink)}
+.dossier-title,.dossier-chapter h2,.dossier-factbox h2,.next-story h2 {
+  font-family:var(--serif);font-weight:600;letter-spacing:-.05em;
+}
+.dossier-title {line-height:.99;color:var(--ink)}
+.dossier-title span,.dossier-meta-line {color:var(--accent)}
+.dossier-hero {border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.dossier-illustration {color:#1B365D;background:var(--panel)}
+.dossier-illustration.road {background:#E1ECF9}
+.dossier-illustration.haunts {background:#DBE6F8}
+.dossier-illustration.everholm {background:#DFEEF1}
+.dossier-illustration.application {background:#F2EAF0}
+.dossier-illustration::before {border-color:rgba(27,54,93,.16);box-shadow:0 0 0 45px rgba(27,54,93,.025),0 0 0 90px rgba(27,54,93,.02)}
+.dossier-illustration>strong {color:var(--accent-strong)}
+.dossier-note {background:var(--panel);border-left:4px solid var(--accent);color:var(--ink)}
+.dossier-chapter {border-top:1px solid var(--line)}
+.dossier-chapter-name {font-family:var(--mono);font-size:10px;color:var(--accent)}
+.dossier-chapter p {color:var(--muted)}
+.pending-box {background:var(--panel);border-left:2px solid var(--line);color:var(--muted)}
+.dossier-factbox {border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:2px;background:var(--panel)}
+.fact-row {border-top-color:var(--line)}
+.fact-row dt {color:var(--muted)}
+.dossier-download {border-top-color:var(--ink)}
+.dossier-not-ready {background:var(--soft);border:1px solid var(--line);color:var(--muted)}
+.dossier-download a.dossier-steam-link {background:var(--soft);border:1px solid var(--line);border-radius:2px;color:var(--ink)}
+.dossier-download a.dossier-steam-link:hover {background:var(--rowhover)}
+.next-story {border-top-color:var(--line)}
+
+/* Tema scuro: stesso carattere, niente accenti fluorescenti. */
+:root.dark .filter-chip.is-active {color:#101E33}
+:root.dark .item-num {color:#FF9A96}
+:root.dark .item-emblem.rose {background:#623F4B;color:#FFF0F0}
+:root.dark .item-emblem.violet {background:#364E75;color:#F2F6FF}
+:root.dark .item-emblem.mint {background:#305965;color:#E9FCFF}
+:root.dark .item-emblem.ochre {background:#645244;color:#FFF5E9}
+:root.dark .item-status span {color:#C2D2E5}
+:root.dark .item-status.disponibile span {color:#68D7A1}
+:root.dark .dossier-illustration.road {background:#28456B}
+:root.dark .dossier-illustration.haunts {background:#304D78}
+:root.dark .dossier-illustration.everholm {background:#2B5263}
+:root.dark .dossier-illustration.application {background:#51455E}
+:root.dark .dossier-illustration {color:#F2F6FD}
+:root.dark .dossier-illustration>strong {color:#FF8E88}
+:root.dark .dossier-illustration::before {border-color:rgba(255,255,255,.13)}
+:root.dark .footer {background:#0B1728}
+
+@media(max-width:820px) {
+  .simple-hero h1 {font-size:clamp(55px,9vw,82px)}
+  .home-page .archive-item {row-gap:5px}
+}
+@media(max-width:560px) {
+  .simple-hero-inner {padding-top:36px;padding-bottom:38px}
+  .simple-hero h1 {font-size:clamp(44px,12vw,67px);line-height:1}
+  .simple-hero p {font-size:14px}
+  .home-page .archive-section {padding-top:28px;padding-bottom:50px}
+  .home-page .archive-head h2 {font-size:40px}
+  .home-page .archive-item {min-height:91px}
+  .item-num {font-size:10px}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
