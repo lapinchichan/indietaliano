@@ -1,9 +1,10 @@
 (() => {
   'use strict';
-  const toggle=document.getElementById('theme-toggle');const key='indietaliano-theme';
-  try{if(localStorage.getItem(key)==='dark')document.documentElement.classList.add('dark');}catch{}
-  const sync=()=>toggle?.setAttribute('aria-label',document.documentElement.classList.contains('dark')?'Attiva tema chiaro':'Attiva tema scuro');
-  toggle?.addEventListener('click',()=>{const dark=document.documentElement.classList.toggle('dark');try{localStorage.setItem(key,dark?'dark':'light');}catch{}sync();});sync();
+  const toggle=document.getElementById('theme-toggle'); const key='indietaliano-color-mode';
+  document.documentElement.classList.remove('dark');
+  try{if(localStorage.getItem(key)==='light')document.documentElement.classList.add('light');}catch{}
+  const sync=()=>toggle?.setAttribute('aria-label',document.documentElement.classList.contains('light')?'Attiva la palette verde bottiglia':'Attiva la variante chiara');
+  toggle?.addEventListener('click',()=>{const light=document.documentElement.classList.toggle('light');try{localStorage.setItem(key,light?'light':'dark');}catch{}sync();});sync();
   const year=document.getElementById('year');if(year)year.textContent=String(new Date().getFullYear());
 })();
 

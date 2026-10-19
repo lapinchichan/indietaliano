@@ -43,10 +43,11 @@
     cards();
   }));
   $('#reset-search').addEventListener('click', () => {$('#game-search').value='';document.querySelector('[data-filter="all"]').click();$('#game-search').focus();});
-  const toggle=$('#theme-toggle');const key='indietaliano-theme';
-  try {if(localStorage.getItem(key)==='dark')document.documentElement.classList.add('dark');} catch {}
-  function updateTheme(){toggle.setAttribute('aria-label', document.documentElement.classList.contains('dark')?'Attiva tema chiaro':'Attiva tema scuro');}
-  toggle.addEventListener('click',()=>{const dark=document.documentElement.classList.toggle('dark');try{localStorage.setItem(key,dark?'dark':'light');}catch{}updateTheme();});
+  const toggle=$('#theme-toggle'); const key='indietaliano-color-mode';
+  document.documentElement.classList.remove('dark');
+  try { if(localStorage.getItem(key)==='light') document.documentElement.classList.add('light'); } catch {}
+  function updateTheme(){ toggle.setAttribute('aria-label',document.documentElement.classList.contains('light')?'Attiva la palette verde bottiglia':'Attiva la variante chiara'); }
+  toggle.addEventListener('click',()=>{const light=document.documentElement.classList.toggle('light');try{localStorage.setItem(key,light?'light':'dark');}catch{} updateTheme();});
   updateTheme();
   // Testi modificabili da Studio Catalogo, sempre inseriti con textContent (mai HTML utente).
   const copy = window.INDIETALIANO_CONFIG || {};
@@ -70,5 +71,8 @@
   const configuredUrl=window.INDIETALIANO_CONFIG?.donationUrl;
   try {const url=new URL(configuredUrl);if(url.protocol==='https:'){const link=$('#donation-link');link.href=url.href;link.hidden=false;$('#donation-pending').hidden=true;}}catch{}
   $('#year').textContent=String(new Date().getFullYear());
+  const total=String(games.length);
+  if($('#catalog-total'))$('#catalog-total').textContent=total;
+  if($('#hero-total'))$('#hero-total').textContent=total;
   cards();
 })();
