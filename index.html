@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FDFBF7">
+  <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Indietaliano: traduzioni italiane gratuite per videogiochi indie, fatte per passione.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Indietaliano · Le storie più belle non hanno barriere">
@@ -17,6 +18,7 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="retro-editorial.css">
   <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="catalog-v3-7.css">
   <script defer src="games.js"></script>
   <script defer src="site-config.js"></script>
   <script defer src="script.js"></script>
@@ -43,7 +45,7 @@
       <div class="archive-head">
         <div>
           <h2 id="archive-title">I giochi<span class="head-dot">.</span></h2>
-          <p>Scopri le traduzioni e i progetti di Indietaliano.</p>
+          <p>Dieci traduzioni italiane in revisione. Le patch saranno disponibili dopo i test di compatibilità.</p>
         </div>
         <span class="archive-stamp">ARCHIVIO INDIE / PC</span>
       </div>
@@ -52,14 +54,14 @@
           <label class="archive-search" for="game-search"><span aria-hidden="true">⌕</span><input id="game-search" type="search" placeholder="Cerca un gioco..." autocomplete="off" aria-label="Cerca un gioco"><span class="search-hint">CERCA</span></label>
           <div class="archive-filters" role="group" aria-label="Filtra lo stato del progetto">
             <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">Tutti</button>
-            <button type="button" class="filter-chip" data-filter="da-verificare" aria-pressed="false">Da verificare</button>
-            <button type="button" class="filter-chip" data-filter="in-lavorazione" aria-pressed="false">In lavorazione</button>
+            <button type="button" class="filter-chip" data-filter="in-revisione" aria-pressed="false">In revisione</button>
+            
             <button type="button" class="filter-chip" data-filter="disponibile" aria-pressed="false">Disponibili</button>
           </div>
         </div>
         <div class="archive-list" id="archive-list" aria-live="polite"></div>
         <div class="empty-message" id="empty-message" hidden><p>Nessun gioco trovato.</p><span>Prova un altro titolo o torna a “Tutti”.</span><button type="button" id="reset-search">Azzera la ricerca ↗</button></div>
-        <div class="archive-footer"><span id="archive-count" aria-live="polite">0 TITOLI IN VISTA</span><span>DOWNLOAD ATTIVI SOLO DOPO LA VERIFICA DELLA PATCH</span></div>
+        <div class="archive-footer"><span id="archive-count" aria-live="polite">0 TITOLI IN VISTA</span><span>TUTTE LE PATCH SONO ATTUALMENTE IN REVISIONE</span></div>
       </div>
     </section>
 

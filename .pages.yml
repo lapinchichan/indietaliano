@@ -22,7 +22,7 @@ content:
       delete: true
     view:
       primary: title
-      fields: [title, status, isDemo]
+      fields: [title, status, patchVerified]
       sort: title
       order: asc
     fields:
@@ -36,6 +36,14 @@ content:
         required: true
         description: Usa solo lettere minuscole, numeri e trattini. Non cambiarlo dopo aver creato il gioco.
         pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      - name: order
+        label: Ordine nel catalogo
+        type: number
+        default: 100
+      - name: steamAppId
+        label: Steam App ID (copertina ufficiale)
+        type: string
+        description: Solo il numero nell'indirizzo della pagina Steam (es. 1374860).
       - name: developer
         label: Sviluppatore
         type: string
@@ -58,6 +66,8 @@ content:
         default: da-verificare
         options:
           values:
+            - name: in-revisione
+              label: In revisione
             - name: da-verificare
               label: Da verificare
             - name: in-lavorazione
@@ -71,6 +81,11 @@ content:
         type: boolean
         default: true
         description: Disattiva soltanto dopo aver verificato la patch e tutti i dati. La pubblicazione verifica comunque il link, la versione e le istruzioni.
+      - name: patchVerified
+        label: Patch collaudata con la versione attuale
+        type: boolean
+        default: false
+        description: Confermare solo dopo avere realmente testato una patch completa. Senza questa spunta nessun download viene pubblicato.
       - name: accent
         label: Decorazione del gioco
         type: select
