@@ -1,0 +1,7 @@
+# Configurazione per la pubblicazione gratuita su Netlify.
+[build]
+  command = "node netlify-build.js"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
