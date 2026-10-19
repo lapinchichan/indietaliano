@@ -1,27 +1,52 @@
-# Indietaliano 3.7 — Catalogo in revisione
+# Indietaliano 3.9 · Amministrazione integrata
 
-Sono presenti 10 giochi, nell'ordine richiesto. Per tutti lo stato è **In revisione**, con download disattivati.
+Il sito rimane ospitato su Netlify, i contenuti sono salvati su GitHub. La pagina **`/admin/`** ospita **Sveltia CMS**: non servira piu aprire GitHub per modificare giochi, traduzioni, copertine e donazioni.
 
-## Modifiche
-- Copertine ufficiali visualizzate tramite URL Steam CDN (richiedono Internet); icona di riserva se non disponibili.
-- Dieci schede con link Steam e presentazioni italiane. Nessuna compatibilità della traduzione viene data per scontata.
-- Pagine in noindex/nofollow fino al lancio pubblico.
-- Pages CMS: nuovo stato `in-revisione`, campo `steamAppId`, ordine e conferma `patchVerified`.
-- Una patch diventa scaricabile soltanto con `isDemo=false`, `status=disponibile`, `patchVerified=true`, link HTTPS, versioni valide e istruzioni compilate.
-- `netlify.toml` e `netlify-build.js` inclusi, così il repository pubblicato su Netlify si aggiorna quando Pages CMS salva su GitHub.
+## Pubblicazione su GitHub
 
-## Aggiornamento del repository
-Estrarre lo ZIP. Caricare **i contenuti** nella radice del repository GitHub `indietaliano`, conservando le cartelle; i file omonimi devono essere sostituiti. Non usare il file ZIP come singolo upload.
+Non caricare lo ZIP come file singolo. La modifica dei testi homepage e stata aggiunta a questa versione.
 
-Dopo il caricamento, Netlify dovrebbe avviare automaticamente la build. L'eventuale workflow GitHub Pages non è necessario.
+1. Caricare i **file principali** nella radice del repository `lapinchichan/indietaliano`, sovrascrivendo quelli esistenti.
+2. Aprire la cartella `admin` del repository e caricarvi i **due file** `index.html` e `config.yml` (NON nella radice del repository).
+3. Attendere un nuovo deploy **Published** su Netlify.
+4. Verificare che `https://indietaliano.netlify.app/admin/config.yml` risponda e che `https://indietaliano.netlify.app/admin/` mostri la schermata di login.
 
-Per provare in locale, con Node.js installato: `node netlify-build.js`, poi aprire `_site/index.html`. Alcuni asset remoti sono disponibili solo con accesso Internet.
+## Attivazione login GitHub tramite Netlify OAuth (una sola volta)
 
-## Cosa resta da verificare
-- Test effettivi delle patch sui giochi aggiornati.
-- Versioni esatte dei giochi, compatibilità e istruzioni reali.
-- Screenshot in italiano di ciascun gioco.
-- Disponibilità e utilizzo delle copertine Steam in produzione.
-- Area CMS autenticata da configurare sul repository e indirizzo di donazione.
+Il pannello sara visibile alla pagina `/admin/`, ma la modifica dei dati richiede l'autenticazione GitHub. Il pannello **non usa password JavaScript** e non memorizza client secret nei file del repository.
 
-La homepage e le pagine sono predisposte ma il sito NON è un catalogo di patch già disponibili.
+1. Su GitHub vai in **Settings (profilo) > Developer settings > OAuth Apps > New OAuth App** (link: https://github.com/settings/applications/new).
+2. Imposta **Application name:** `Indietaliano CMS`, **Homepage URL:** `https://indietaliano.netlify.app`, **Authorization callback URL:** `https://api.netlify.com/auth/done`.
+3. Registra l'app, copia **Client ID** e genera **Client Secret**. Non condividere il Client Secret in chat, nei file del sito o nel repository.
+4. Apri Netlify > progetto `indietaliano` > **Project configuration > Security > OAuth** (puo comparire sotto Access & security) > **Install provider** > **GitHub**. Inserisci li Client ID e Client Secret, poi salva.
+5. Visita `https://indietaliano.netlify.app/admin/`, scegli **Sign in with GitHub** e autorizza l'accesso. Devi avere permessi di scrittura sul repository `lapinchichan/indietaliano`.
+
+I nomi delle sezioni Netlify possono cambiare. La procedura e documentata qui: https://sveltiacms.app/en/docs/backends/github . Se l'OAuth di Netlify non fosse disponibile sul tuo piano, la configurazione alternativa richiede un autenticatore OAuth esterno: non incollare mai i segreti nel frontend.
+
+**Nota:** l'indirizzo /admin/ e pubblico in lettura; l'autenticazione protegge le operazioni GitHub, non nasconde la pagina. La privacy del sito di prova va gestita nelle impostazioni Netlify separatamente.
+
+## Cosa puoi fare
+
+- Modificare o creare un videogame in **Videogiochi** (JSON sotto `content/games`).
+- Inserire copertine personalizzate e screenshot: vengono caricati sotto `assets/screenshots`.
+- Modificare note, stato, versioni, link Steam, istruzioni e link della patch.
+- Modificare il titolo e la presentazione della homepage, il testo del sostegno e il link alle donazioni in **Impostazioni del sito**.
+- Cliccare **Save** nel pannello: Sveltia crea un commit su GitHub, Netlify esegue automaticamente la build `node netlify-build.js`.
+
+## Sicurezza delle patch
+
+La selezione **Disponibile** NON basta per attivare il download. La build controlla anche `isDemo=false`, `patchVerified=true`, versioni gioco/patch valide, link HTTPS e almeno una istruzione. Con dati non completi la scheda diventa "In test" e il download resta sospeso. Non confermare `patchVerified` prima di testare veramente la patch dopo gli aggiornamenti.
+
+## Limiti e verifiche
+
+- La schermata di login remota non e verificabile finche il GitHub OAuth provider non sara configurato dal proprietario.
+- Non caricare nella repository credenziali, token o password.
+- Per adesso le 10 patch rimangono **In revisione**, senza link di download.
+- `gestione.html` continua a funzionare come reindirizzamento a `/admin/` per vecchi collegamenti.
+- `.pages.yml` e il vecchio CMS Pages non sono piu utilizzati per la gestione del sito. Il file puo restare nel repository, ma non servira aprire Pages CMS.
+
+### Fonti tecniche
+- https://sveltiacms.app/en/docs/start
+- https://sveltiacms.app/en/docs/backends/github
+- https://sveltiacms.app/en/docs/collections/entries/formats
+- https://sveltiacms.app/en/docs/media

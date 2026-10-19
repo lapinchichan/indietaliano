@@ -16,7 +16,7 @@ const games=files.map((file)=>{
   if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || id!==data.id) throw Error(`Slug errato: ${file}; id deve essere ${id}`);
   if(typeof data.title!=='string'||!data.title.trim()) throw Error('Titolo mancante: '+file);
   if(!allowedStatuses.has(data.status))throw Error('Stato non riconosciuto: '+file);
-  for(const field of ['title','developer','genre','description','steamUrl','platform','gameVersion','patchVersion','releaseNotes','downloadUrl','updated']) {
+  for(const field of ['title','developer','genre','description','steamUrl','platform','gameVersion','patchVersion','releaseNotes','downloadUrl','updated','coverImage']) {
     if(data[field] != null && typeof data[field] !== 'string') throw Error('Tipo errato per '+field+' in '+file);
   }
   if(data.steamUrl && !/^https:\/\/store\.steampowered\.com\/app\/\d+(?:\/[^?#]*)?\/?$/.test(data.steamUrl)) throw Error('URL Steam non valido: '+file);
@@ -43,8 +43,14 @@ const games=files.map((file)=>{
   const assetBase=data.steamAppId ? `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${data.steamAppId}/` : '';
   if (data.steamHeaderHash && !/^[a-f0-9]{40}$/.test(data.steamHeaderHash)) throw Error('Hash copertina Steam non valido: '+file);
   if (data.steamLibraryHash && !/^[a-f0-9]{40}$/.test(data.steamLibraryHash)) throw Error('Hash libreria Steam non valido: '+file);
-  data.coverUrl=assetBase ? assetBase+(data.steamHeaderHash ? data.steamHeaderHash+'/' : '')+'header.jpg' : '';
-  data.coverFallbackUrl=assetBase && data.steamLibraryHash ? assetBase+data.steamLibraryHash+'/library_capsule.jpg' : '';
+  const steamCover=assetBase ? assetBase+(data.steamHeaderHash ? data.steamHeaderHash+'/' : '')+'header.jpg' : '';
+  const steamFallback=assetBase && data.steamLibraryHash ? assetBase+data.steamLibraryHash+'/library_capsule.jpg' : '';
+  const localCover=typeof data.coverImage==='string' ? data.coverImage.replace(/^\//,'') : '';
+  if (localCover && !/^assets\/screenshots\/[a-z0-9/_-]+\.(?:webp|png|jpg|jpeg)$/i.test(localCover)) {
+    throw Error('Copertina locale non valida: '+file);
+  }
+  data.coverUrl=localCover || steamCover;
+  data.coverFallbackUrl=localCover ? steamCover || steamFallback : steamFallback;
   data.order=Number.isFinite(Number(data.order)) ? Number(data.order) : 100;
   data.accent=allowedAccents.has(data.accent)?data.accent:'road';
   return data;
@@ -54,7 +60,10 @@ const jsData=JSON.stringify(games,null,2).replace(/</g,'\\u003c');
 fs.writeFileSync(path.join(root,'games.js'),'window.INDIETALIANO_GAMES = '+jsData+';\n');
 const settings=JSON.parse(fs.readFileSync(path.join(root,'content','site.json'),'utf8'));
 const donationUrl=typeof settings.donationUrl==='string' && safeHttps(settings.donationUrl) ? settings.donationUrl : '';
-fs.writeFileSync(path.join(root,'site-config.js'),'window.INDIETALIANO_CONFIG = '+JSON.stringify({donationUrl},null,2)+';\n');
+const copyKeys=['heroLine1','heroLine2','heroLine3','heroEmphasis','introText','supportTitle','supportText'];
+const editableCopy=Object.fromEntries(copyKeys.map(k=>[k,typeof settings[k]==='string'?settings[k].trim().slice(0,600):'']));
+const siteJsData=JSON.stringify({donationUrl,...editableCopy},null,2).replace(/</g,'\\u003c');
+fs.writeFileSync(path.join(root,'site-config.js'),'window.INDIETALIANO_CONFIG = '+siteJsData+';\n');
 const esc = (s='') => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const statusLabel={'in-revisione':'In revisione','da-verificare':'Da verificare','in-lavorazione':'In lavorazione','in-test':'In test','disponibile':'Disponibile'};
 const symbol={road:'↗',haunts:'♠',everholm:'✳',application:'▤'};
@@ -79,7 +88,8 @@ for(const [idx,g] of games.entries()){
  const notes=demo ? 'Questa è una scheda preparatoria. Le informazioni sulla traduzione sono ancora da verificare e non implicano che una patch sia già pubblicabile.' : (g.releaseNotes || 'Traduzione italiana in revisione dopo gli aggiornamenti del gioco.');
  const installation=available?`<ol class="install-steps">${g.installSteps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:'<div class="pending-box">La procedura di installazione sarà pubblicata dopo i nuovi test di compatibilità. Per il momento la patch non è scaricabile.</div>';
  const shots=(!demo && Array.isArray(g.screenshots)?g.screenshots:[]).filter(safeImage);
- const steamCover=g.coverUrl?`<img class="dossier-steam-cover steam-cover" src="${esc(g.coverUrl)}" ${g.coverFallbackUrl ? `data-backup="${esc(g.coverFallbackUrl)}"` : ''} alt="Copertina ufficiale Steam di ${esc(g.title)}" loading="eager" decoding="async">`:'';
+ const dossierCover=(url)=>url && url.startsWith('assets/') ? '../'+url : url;
+ const steamCover=g.coverUrl?`<img class="dossier-steam-cover steam-cover" src="${esc(dossierCover(g.coverUrl))}" ${g.coverFallbackUrl ? `data-backup="${esc(dossierCover(g.coverFallbackUrl))}"` : ''} alt="Copertina di ${esc(g.title)}" loading="eager" decoding="async">`:'';
  const screenshots=shots.length?`<div class="screens-grid">${shots.map(s=>`<img src="../${esc(s)}" loading="lazy" alt="Screenshot tradotto di ${esc(g.title)}">`).join('')}</div>`:'<div class="pending-box">Le schermate del gioco tradotto compariranno qui dopo la verifica.</div>';
  const props=[['Autore del gioco',g.developer],['Genere',g.genre],['Piattaforma',g.platform],['Versione del gioco',g.gameVersion||'Da confermare'],['Versione della patch',g.patchVersion||'Non pubblicata'],['Stato',status],['Aggiornamento',g.updated||'Da comunicare']].map(([a,b])=>`<div class="fact-row"><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('');
  const download=available?`<a href="${esc(g.downloadUrl)}" target="_blank" rel="noopener noreferrer">Scarica la patch <span aria-hidden="true">↗</span></a><small>Leggi le istruzioni prima di installare la patch.</small>`:'<span class="dossier-not-ready">Nessuna patch disponibile per il download.</span><small>Lo stato e la compatibilità devono essere confermati prima della pubblicazione.</small>';

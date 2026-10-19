@@ -12,11 +12,13 @@ const publicFiles = [
   'home.css', 'retro-editorial.css', 'typography.css', 'catalog-v3-7.css',
   'script.js', 'detail-page.js', 'games.js', 'site-config.js'
 ];
-const publicFolders = ['assets', 'giochi'];
+const publicFolders = ['assets', 'giochi', 'admin'];
 for (const file of publicFiles) {
   fs.copyFileSync(path.join(root, file), path.join(output, file));
 }
 for (const folder of publicFolders) {
   fs.cpSync(path.join(root, folder), path.join(output, folder), { recursive: true });
 }
+// Evita di mostrare un catalogo vecchio dopo un aggiornamento dal CMS.
+fs.writeFileSync(path.join(output, '_headers'), '/games.js\n  Cache-Control: no-cache, must-revalidate\n/site-config.js\n  Cache-Control: no-cache, must-revalidate\n');
 console.log('Netlify: pubblicazione preparata in _site/');

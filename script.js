@@ -48,6 +48,25 @@
   function updateTheme(){toggle.setAttribute('aria-label', document.documentElement.classList.contains('dark')?'Attiva tema chiaro':'Attiva tema scuro');}
   toggle.addEventListener('click',()=>{const dark=document.documentElement.classList.toggle('dark');try{localStorage.setItem(key,dark?'dark':'light');}catch{}updateTheme();});
   updateTheme();
+  // Testi modificabili da Studio Catalogo, sempre inseriti con textContent (mai HTML utente).
+  const copy = window.INDIETALIANO_CONFIG || {};
+  const fallbackLines = ['Le storie','più belle','non hanno','barriere.'];
+  const headingKeys = ['heroLine1','heroLine2','heroLine3','heroEmphasis'];
+  if (headingKeys.some(k => typeof copy[k] === 'string' && copy[k].trim())) {
+    const title = $('#hero-title');
+    const fragment = document.createDocumentFragment();
+    headingKeys.forEach((key,i) => {
+      if(i) fragment.appendChild(document.createElement('br'));
+      const value = typeof copy[key] === 'string' && copy[key].trim() ? copy[key].trim() : fallbackLines[i];
+      if(i === 3){ const em=document.createElement('em');em.textContent=value;fragment.appendChild(em); }
+      else fragment.appendChild(document.createTextNode(value));
+    });
+    title.replaceChildren(fragment);
+  }
+  for(const [key, selector] of [['introText','.simple-hero-inner > p'],['supportTitle','#support-title'],['supportText','.support-intro p']]){
+    const value=copy[key];const target=$(selector);
+    if(target && typeof value === 'string' && value.trim()) target.textContent=value.trim();
+  }
   const configuredUrl=window.INDIETALIANO_CONFIG?.donationUrl;
   try {const url=new URL(configuredUrl);if(url.protocol==='https:'){const link=$('#donation-link');link.href=url.href;link.hidden=false;$('#donation-pending').hidden=true;}}catch{}
   $('#year').textContent=String(new Date().getFullYear());
