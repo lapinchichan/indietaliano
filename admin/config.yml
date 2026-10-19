@@ -1,0 +1,105 @@
+# Indietaliano 3.9 · Gestione integrata con Sveltia CMS
+# Questo file e' pubblico: non inserire token, password o client secret.
+backend:
+  name: github
+  repo: lapinchichan/indietaliano
+  branch: main
+  auth_methods: [oauth]
+
+site_url: https://indietaliano.netlify.app
+locale: it
+media_folder: /assets/screenshots
+public_folder: /assets/screenshots
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 6000000
+slug:
+  encoding: ascii
+  clean_accents: true
+  lowercase: true
+
+collections:
+  - name: giochi
+    label: Videogiochi
+    label_singular: Videogioco
+    folder: content/games
+    format: json
+    extension: json
+    identifier_field: id
+    slug:
+      template: '{{id}}'
+      editable: [create]
+    create: true
+    delete: false
+    summary: '{{title}} · {{status}}'
+    fields:
+      - {name: title, label: Titolo del videogioco, widget: string, required: true}
+      - {name: id, label: Indirizzo della scheda (slug), widget: string, required: true, hint: 'Usa lettere minuscole e trattini. Non cambiare dopo la creazione.'}
+      - {name: order, label: Ordine nel catalogo, widget: number, value_type: int, default: 100, min: 1, required: true}
+      - {name: developer, label: Sviluppatore, widget: string, required: false}
+      - {name: genre, label: Genere, widget: string, required: false}
+      - {name: description, label: Presentazione del gioco, widget: text, required: false}
+      - {name: steamUrl, label: Link ufficiale Steam (HTTPS), widget: string, required: false}
+      - {name: steamAppId, label: Steam App ID, widget: string, required: false, hint: 'Numero presente nel link Steam. Usato per la copertina automatica.'}
+      - {name: steamHeaderHash, label: Hash copertina Steam (opzionale), widget: string, required: false}
+      - {name: steamLibraryHash, label: Hash immagine Steam alternativa, widget: string, required: false}
+      - {name: coverImage, label: Copertina personalizzata (opzionale), widget: image, required: false, hint: 'Se caricata, sostituisce la miniatura Steam; usa immagini che puoi pubblicare.'}
+      - {name: releaseDate, label: Data di uscita (testo), widget: string, required: false}
+      - {name: platform, label: Piattaforma, widget: string, default: 'PC (Steam)', required: false}
+      - name: status
+        label: Stato della traduzione
+        widget: select
+        required: true
+        default: in-revisione
+        options:
+          - {label: In revisione, value: in-revisione}
+          - {label: Da verificare, value: da-verificare}
+          - {label: In lavorazione, value: in-lavorazione}
+          - {label: In test, value: in-test}
+          - {label: Disponibile, value: disponibile}
+      - {name: isDemo, label: Scheda dimostrativa / incompleta, widget: boolean, default: false, required: false, hint: 'Se attivo, la patch non puo essere scaricata.'}
+      - {name: patchVerified, label: Patch testata e verificata, widget: boolean, default: false, required: false, hint: 'Attiva SOLO dopo test reali; da sola non abilita il download.'}
+      - name: accent
+        label: Decorazione di riserva
+        widget: select
+        default: road
+        options:
+          - {label: Viaggio, value: road}
+          - {label: Horror, value: haunts}
+          - {label: Natura, value: everholm}
+          - {label: Documenti, value: application}
+      - {name: gameVersion, label: Versione del gioco testata, widget: string, required: false}
+      - {name: patchVersion, label: Versione della patch, widget: string, required: false}
+      - {name: updated, label: Ultimo controllo / aggiornamento, widget: string, required: false}
+      - {name: releaseNotes, label: Note sulla traduzione, widget: text, required: false}
+      - name: installSteps
+        label: Istruzioni per installare la patch
+        widget: list
+        required: false
+        hint: 'Inserisci un passaggio per riga. Le istruzioni vengono mostrate quando la patch e disponibile.'
+      - name: screenshots
+        label: Screenshot della versione tradotta
+        widget: image
+        multiple: true
+        max: 8
+        accept: 'image/png,image/jpeg,image/webp'
+        required: false
+      - {name: downloadUrl, label: Download della patch (link HTTPS), widget: string, required: false, hint: 'Viene pubblicato solo se lo stato e Disponibile, il test e confermato, e ci sono versioni e istruzioni valide.'}
+
+  - name: impostazioni
+    label: Impostazioni del sito
+    files:
+      - name: sito
+        label: Donazioni e impostazioni
+        file: content/site.json
+        fields:
+          - {name: heroLine1, label: Homepage - titolo riga 1, widget: string, required: false, hint: 'Es. Le storie. Se vuoto, mantiene il testo attuale.'}
+          - {name: heroLine2, label: Homepage - titolo riga 2, widget: string, required: false}
+          - {name: heroLine3, label: Homepage - titolo riga 3, widget: string, required: false}
+          - {name: heroEmphasis, label: Homepage - ultima parola in rosso, widget: string, required: false}
+          - {name: introText, label: Homepage - testo sotto il titolo, widget: text, required: false}
+          - {name: supportTitle, label: Donazioni - titolo, widget: string, required: false}
+          - {name: supportText, label: Donazioni - presentazione, widget: text, required: false}
+          - {name: donationUrl, label: Link alle donazioni (HTTPS), widget: string, required: false, hint: 'Lascia vuoto fino a quando il metodo di donazione e pronto. Le patch restano gratuite.'}
