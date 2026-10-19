@@ -19,5 +19,7 @@
   "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
   "installSteps": [],
   "screenshots": [],
-  "downloadUrl": ""
+  "downloadUrl": "",
+  "steamHeaderHash": "20c77bf534fff6e4441038374863b5a733761639",
+  "steamLibraryHash": "878f6ca78676a6bceb49e0d3d1e8d5ca14dc93c7"
 }
