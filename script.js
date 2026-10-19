@@ -12,14 +12,23 @@
     const search = ($('#game-search').value || '').trim().toLocaleLowerCase('it');
     const filtered = games.filter(g => (currentFilter === 'all' || (g.status === currentFilter && (currentFilter !== 'disponibile' || !g.isDemo))) && `${g.title} ${g.genre} ${g.developer}`.toLocaleLowerCase('it').includes(search));
     list.innerHTML = filtered.map((g) => {
-      const num = String(games.indexOf(g) + 1).padStart(2,'0');
       const status = g.isDemo ? 'Stato da confermare' : (label[g.status] || 'Da verificare');
       const cssStatus = g.isDemo ? 'unknown' : g.status;
       const path = `giochi/${encodeURIComponent(g.id)}.html`;
-      const cover = g.coverUrl ? `<img class="item-cover steam-cover" src="${safeText(g.coverUrl)}" alt="" loading="lazy" decoding="async">` : '';
-      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-num">${num}</span><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span><span class="item-arrow" aria-hidden="true">↗</span></a>`;
+      const cover = g.coverUrl ? `<img class="item-cover steam-cover" src="${safeText(g.coverUrl)}" ${g.coverFallbackUrl ? `data-backup="${safeText(g.coverFallbackUrl)}"` : ''} alt="" loading="lazy" decoding="async">` : '';
+      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span><span class="item-arrow" aria-hidden="true">↗</span></a>`;
     }).join('');
-    list.querySelectorAll('img.steam-cover').forEach(img => {img.addEventListener('error',()=>{img.style.display='none';});});
+    list.querySelectorAll('img.steam-cover').forEach(img => {
+      img.addEventListener('error', () => {
+        const backup = img.dataset.backup;
+        if (backup && !img.dataset.backupTried) {
+          img.dataset.backupTried = 'true';
+          img.src = backup;
+        } else {
+          img.style.display = 'none';
+        }
+      });
+    });
     $('#archive-count').textContent = `${filtered.length} ${filtered.length===1?'TITOLO':'TITOLI'} IN VISTA`;
     $('#empty-message').hidden = filtered.length !== 0;
     list.hidden = filtered.length === 0;

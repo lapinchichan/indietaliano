@@ -9,5 +9,9 @@
 
 // If Steam's image is blocked, the decorative fallback remains visible.
 document.querySelectorAll('img.steam-cover').forEach(img=>{
- img.addEventListener('error',()=>{img.style.display='none';});
+ img.addEventListener('error',()=>{
+  const backup=img.dataset.backup;
+  if(backup && !img.dataset.backupTried){img.dataset.backupTried='true';img.src=backup;}
+  else img.style.display='none';
+ });
 });

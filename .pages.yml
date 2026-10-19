@@ -44,6 +44,14 @@ content:
         label: Steam App ID (copertina ufficiale)
         type: string
         description: Solo il numero nell'indirizzo della pagina Steam (es. 1374860).
+      - name: steamHeaderHash
+        label: Hash Steam della copertina (facoltativo)
+        type: string
+        description: Solo se la copertina non si carica. Inserire l'hash del file header Steam (40 caratteri), non l'indirizzo URL.
+      - name: steamLibraryHash
+        label: Hash Steam della copertina alternativa (facoltativo)
+        type: string
+        description: Hash della library_capsule su Steam, usata se la copertina principale non si apre.
       - name: developer
         label: Sviluppatore
         type: string
