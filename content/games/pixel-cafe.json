@@ -1,0 +1,23 @@
+{
+  "id": "pixel-cafe",
+  "title": "Pixel Cafe",
+  "order": 4,
+  "steamAppId": "2409360",
+  "developer": "Baltoro Games",
+  "steamUrl": "https://store.steampowered.com/app/2409360/",
+  "releaseDate": "30 novembre 2023",
+  "genre": "Narrativo · Gestionale",
+  "description": "Tra turni di lavoro frenetici e ricordi di famiglia, segui la storia di Pixel in un’avventura in pixel art che unisce gestione del tempo e narrazione.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "everholm",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}

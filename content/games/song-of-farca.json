@@ -1,0 +1,23 @@
+{
+  "id": "song-of-farca",
+  "title": "Song of Farca",
+  "order": 1,
+  "steamAppId": "1435670",
+  "developer": "Wooden Monkeys",
+  "steamUrl": "https://store.steampowered.com/app/1435670/",
+  "releaseDate": "22 luglio 2021",
+  "genre": "Investigazione · Narrativo",
+  "description": "Una detective story cyberpunk fatta di hackeraggi, indagini e scelte difficili. Raccogli prove, interroga i sospettati e scopri cosa si nasconde dietro i casi di Farca.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "application",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}

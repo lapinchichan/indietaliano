@@ -1,0 +1,23 @@
+{
+  "id": "little-sim-world",
+  "title": "Little Sim World",
+  "order": 7,
+  "steamAppId": "1429880",
+  "developer": ".GRAVITY",
+  "steamUrl": "https://store.steampowered.com/app/1429880/",
+  "releaseDate": "17 agosto 2026",
+  "genre": "Life sim · Cozy",
+  "description": "Un simulatore di vita bidimensionale ambientato a Little London: arreda casa, incontra gli abitanti e costruisci la tua routine, un giorno alla volta.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "everholm",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}

@@ -1,0 +1,23 @@
+{
+  "id": "nocturne",
+  "title": "Nocturne",
+  "order": 2,
+  "steamAppId": "1374860",
+  "developer": "Pracy Studios",
+  "steamUrl": "https://store.steampowered.com/app/1374860/",
+  "releaseDate": "24 settembre 2026",
+  "genre": "RPG · Ritmico",
+  "description": "Un gioco di ruolo narrativo ambientato in un aldilà digitale. Esplora un mondo sull’orlo del collasso e affronta combattimenti scanditi dalla musica.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "haunts",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}

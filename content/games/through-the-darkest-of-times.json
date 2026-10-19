@@ -1,0 +1,23 @@
+{
+  "id": "through-the-darkest-of-times",
+  "title": "Through the Darkest of Times",
+  "order": 5,
+  "steamAppId": "1003090",
+  "developer": "Paintbucket Games",
+  "steamUrl": "https://store.steampowered.com/app/1003090/",
+  "releaseDate": "30 gennaio 2020",
+  "genre": "Storico · Strategia",
+  "description": "Berlino, 1933. Guida un piccolo gruppo clandestino che resiste al regime nazista: organizza azioni, proteggi i membri e affronta decisioni difficili.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "application",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}

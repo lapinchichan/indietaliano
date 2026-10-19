@@ -1,0 +1,23 @@
+{
+  "id": "bookstore-incremental",
+  "title": "Bookstore Incremental",
+  "order": 3,
+  "steamAppId": "4664470",
+  "developer": "Exaeryth",
+  "steamUrl": "https://store.steampowered.com/app/4664470/",
+  "releaseDate": "9 settembre 2026",
+  "genre": "Incrementale · Gestionale",
+  "description": "Parti da una piccola libreria e falla crescere un potenziamento alla volta: nuovi libri, clienti, personale e tante scelte per gestire il negozio.",
+  "status": "in-revisione",
+  "isDemo": false,
+  "patchVerified": false,
+  "accent": "application",
+  "platform": "PC (Steam)",
+  "gameVersion": "Da verificare",
+  "patchVersion": "Non pubblicata",
+  "updated": "In attesa di test",
+  "releaseNotes": "La traduzione italiana è stata realizzata, ma non è ancora stata ricontrollata dopo gli aggiornamenti del gioco. La compatibilità con la versione attuale e la completezza dei testi devono essere verificate prima di pubblicare la patch.",
+  "installSteps": [],
+  "screenshots": [],
+  "downloadUrl": ""
+}
