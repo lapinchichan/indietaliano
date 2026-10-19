@@ -9,7 +9,7 @@ fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
 const publicFiles = [
   'index.html', 'gestione.html', 'gestione.css', 'style.css',
-  'home.css', 'retro-editorial.css', 'typography.css',
+  'home.css', 'retro-editorial.css', 'typography.css', 'catalog-v3-7.css',
   'script.js', 'detail-page.js', 'games.js', 'site-config.js'
 ];
 const publicFolders = ['assets', 'giochi'];
