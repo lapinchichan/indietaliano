@@ -3,7 +3,7 @@
 backend:
   name: github
   repo: lapinchichan/indietaliano
-  branch: main
+  branch: sviluppo
   auth_methods: [oauth]
 
 site_url: https://indietaliano.netlify.app
