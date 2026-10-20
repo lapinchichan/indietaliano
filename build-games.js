@@ -117,7 +117,7 @@ for(const [idx,g] of games.entries()){
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../retro-editorial.css"><link rel="stylesheet" href="../typography.css"><link rel="stylesheet" href="../catalog-v3-7.css?v=380"><link rel="stylesheet" href="../verde-bottiglia.css?v=460">
+<link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../retro-editorial.css"><link rel="stylesheet" href="../typography.css"><link rel="stylesheet" href="../catalog-v3-7.css?v=380"><link rel="stylesheet" href="../verde-bottiglia.css?v=414">
 <script defer src="../detail-page.js"></script></head>
 <body class="ig-game-view"><a class="skip-link" href="#contenuto">Vai al contenuto</a>
 <header class="masthead"><a class="type-logo" href="../index.html">indie<span>taliano</span><i>.</i></a><nav class="mast-nav" aria-label="Navigazione principale"><a href="../index.html#giochi">Giochi</a><a href="../index.html#sostieni">Sostieni</a><a class="nav-admin" href="../gestione.html">Gestione</a></nav><button id="theme-toggle" type="button" class="theme-button" aria-label="Attiva variante chiara"><span aria-hidden="true">◐</span> <span class="theme-word">Tema</span></button></header>
@@ -128,7 +128,7 @@ for(const [idx,g] of games.entries()){
 <section class="ig-facts" id="scheda" aria-labelledby="ig-facts-title"><div class="ig-section-top"><span class="ig-section-index">INFORMAZIONI DEL GIOCO</span></div><h2 id="ig-facts-title">La scheda, in breve.</h2><dl class="ig-facts-grid">${factsHtml}</dl><div class="ig-facts-note"><span>Ultimo controllo della traduzione</span><span>${esc(g.updated||'Da verificare')}</span></div></section>
 <section class="ig-translation" id="traduzione" aria-labelledby="ig-translation-title"><div class="ig-section-top"><span class="ig-section-index">TRADUZIONE AMATORIALE · ITALIANO</span></div><h2 id="ig-translation-title">La traduzione italiana.</h2><p>${esc(notes)}</p><div class="ig-release ig-release-${available?'ready':'pending'}"><span class="ig-release-icon" aria-hidden="true">${available?'✓':'↻'}</span>${downloadHtml}</div></section>
 ${extraSteps}${extraShots}
-<footer class="ig-footer"><p>Indietaliano è un progetto indipendente di traduzioni amatoriali. Le patch non includono il gioco originale.</p><a href="../index.html#giochi">Torna ai giochi ↑</a></footer>
+<footer class="ig-footer"><p>Indietaliano è un progetto indipendente di traduzioni amatoriali. Le patch non includono il gioco originale.</p><div class="it-dossier-footer-actions"><a href="../segnalazioni.html?gioco=${encodeURIComponent(g.id)}">Segnala un problema ↗</a><a href="../index.html#giochi">Torna ai giochi ↑</a></div></footer>
 </main></body></html>`;
  fs.writeFileSync(path.join(outDir,`${g.id}.html`),html);
  console.log('Generata scheda:',g.title, available ? '(patch verificata)' : '(in revisione, download bloccato)');

@@ -8,7 +8,7 @@ const output = path.join(root, '_site');
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
 const publicFiles = [
-  'index.html', 'gestione.html', 'gestione.css', 'style.css',
+  'index.html', 'segnalazioni.html', 'segnalazione-inviata.html', 'gestione.html', 'gestione.css', 'style.css',
   'home.css', 'retro-editorial.css', 'typography.css', 'catalog-v3-7.css', 'verde-bottiglia.css',
   'script.js', 'detail-page.js', 'games.js', 'site-config.js'
 ];

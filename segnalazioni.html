@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15231F">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Segnala un problema con una traduzione italiana di Indietaliano.">
+  <title>Segnala un problema · Indietaliano</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="retro-editorial.css">
+  <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="verde-bottiglia.css?v=414">
+  <script defer src="games.js"></script>
+  <script defer src="detail-page.js"></script>
+</head>
+<body class="ig-game-view it-report-page">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <header class="masthead">
+    <a class="type-logo" href="index.html" aria-label="Indietaliano, homepage">indie<span>taliano</span><i>.</i></a>
+    <nav class="mast-nav" aria-label="Navigazione principale">
+      <a href="index.html#giochi">Giochi</a>
+      <a href="index.html#sostieni">Sostieni</a>
+      <a class="nav-admin" href="admin/">Gestione</a>
+    </nav>
+    <button type="button" id="theme-toggle" class="theme-button" aria-label="Attiva variante chiara"><span aria-hidden="true">◐</span> <span class="theme-word">Tema</span></button>
+  </header>
+  <main id="contenuto" class="it-report-wrap">
+    <a class="it-report-back" href="index.html#giochi">← Torna ai giochi</a>
+    <header class="it-report-intro">
+      <span class="it-report-kicker">SEGNALAZIONI · INDIETALIANO</span>
+      <h1>Qualcosa non funziona<span>.</span></h1>
+      <p>Una frase rimasta in inglese, un errore nei testi, una patch incompatibile: descrivi il problema e indicami quale gioco stai usando. Ogni segnalazione aiuta a migliorare le traduzioni.</p>
+    </header>
+    <form class="it-report-form" name="indietaliano-segnalazioni" method="POST" action="/segnalazione-inviata" data-netlify="true" netlify-honeypot="indirizzo-sito" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="indietaliano-segnalazioni">
+      <p class="it-bot-field" aria-hidden="true"><label>Lascia questo campo vuoto <input name="indirizzo-sito" tabindex="-1" autocomplete="off"></label></p>
+      <div class="it-report-heading"><h2>Raccontami cosa succede</h2><span>* Campi obbligatori</span></div>
+      <div class="it-report-grid">
+        <div class="it-field">
+          <label for="it-game">Videogioco <span aria-hidden="true">*</span></label>
+          <select id="it-game" name="gioco" required>
+            <option value="">Seleziona un videogioco…</option>
+            <option value="sito">Problema con il sito</option>
+          </select>
+        </div>
+        <div class="it-field">
+          <label for="it-type">Tipo di problema <span aria-hidden="true">*</span></label>
+          <select id="it-type" name="tipo" required>
+            <option value="">Seleziona una categoria…</option>
+            <option value="traduzione">Testo o traduzione</option>
+            <option value="compatibilita">Compatibilità dopo un aggiornamento</option>
+            <option value="installazione">Installazione della patch</option>
+            <option value="crash">Crash o malfunzionamento</option>
+            <option value="sito">Problema del sito</option>
+            <option value="altro">Altro</option>
+          </select>
+        </div>
+        <div class="it-field">
+          <label for="it-version">Versione del gioco <span class="it-optional">(facoltativa)</span></label>
+          <input id="it-version" name="versione" type="text" maxlength="100" placeholder="Es. 1.0.5 / Steam">
+        </div>
+        <div class="it-field">
+          <label for="it-email">Email per eventuale risposta <span class="it-optional">(facoltativa)</span></label>
+          <input id="it-email" name="email" type="email" maxlength="160" autocomplete="email" placeholder="nome@esempio.it">
+        </div>
+        <div class="it-field it-field-wide">
+          <label for="it-message">Descrivi il problema <span aria-hidden="true">*</span></label>
+          <textarea id="it-message" name="descrizione" rows="6" minlength="20" maxlength="3000" required placeholder="Dove compare il problema? Cosa dovrebbe succedere? Se possibile, indica i passaggi per riprodurlo."></textarea>
+          <small>Almeno 20 caratteri. Non inserire password o informazioni personali di altre persone.</small>
+        </div>
+        <div class="it-field it-field-wide">
+          <label for="it-image">Screenshot <span class="it-optional">(facoltativo)</span></label>
+          <input id="it-image" name="screenshot" type="file" accept="image/png,image/jpeg,image/webp">
+          <small>Un'immagine JPG, PNG o WEBP, massimo 3 MB. Controlla che non contenga dati personali.</small>
+          <p class="it-file-error" id="it-file-error" role="alert" hidden></p>
+        </div>
+      </div>
+      <div class="it-report-submit-area">
+        <p class="it-report-privacy">Le informazioni inviate saranno gestite tramite Netlify Forms per valutare la segnalazione. L'email è facoltativa e verrà usata solo per un'eventuale risposta. Non inviare password o dati sensibili.</p>
+        <button type="submit" class="it-report-submit">Invia segnalazione <span aria-hidden="true">↗</span></button>
+      </div>
+    </form>
+    <footer class="it-report-bottom"><span>Progetto indipendente, traduzioni gratuite.</span><a href="index.html">Torna a Indietaliano ↑</a></footer>
+  </main>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    'use strict';
+    const select=document.getElementById('it-game');
+    const games=Array.isArray(window.INDIETALIANO_GAMES) ? window.INDIETALIANO_GAMES : [];
+    for(const game of games){
+      if(!game || typeof game.id!=='string' || typeof game.title!=='string')continue;
+      const opt=document.createElement('option');
+      opt.value=game.id;
+      opt.textContent=game.title;
+      select.appendChild(opt);
+    }
+    const requested=new URLSearchParams(window.location.search).get('gioco');
+    if(requested && Array.from(select.options).some(o=>o.value===requested))select.value=requested;
+    const form=document.querySelector('.it-report-form');
+    const input=document.getElementById('it-image');
+    const warning=document.getElementById('it-file-error');
+    form.addEventListener('submit', event => {
+      warning.hidden=true;
+      if(!input.files.length)return;
+      const file=input.files[0];
+      const allowed=['image/png','image/jpeg','image/webp'];
+      if(file.size>3*1024*1024 || !allowed.includes(file.type)){
+        warning.textContent='Screenshot non valido: carica un JPG, PNG o WEBP di massimo 3 MB.';
+        warning.hidden=false;
+        input.focus();
+        event.preventDefault();
+      }
+    });
+  });
+  </script>
+</body>
+</html>
