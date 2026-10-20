@@ -846,3 +846,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible {
     text-wrap:balance;
   }
 }
+
+/* v4.13: nessuna freccia sovrapposta alle copertine del catalogo.
+   Salvaguardia per script vecchi presenti in cache. */
+.home-page .archive-list .item-arrow { display: none !important; }

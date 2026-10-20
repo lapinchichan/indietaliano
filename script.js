@@ -3,7 +3,7 @@
   const games = Array.isArray(window.INDIETALIANO_GAMES) ? window.INDIETALIANO_GAMES : [];
   const $ = (q) => document.querySelector(q);
   const label = { 'in-revisione':'In revisione', 'da-verificare': 'Da verificare', 'in-lavorazione': 'In lavorazione', 'in-test': 'In test', 'disponibile': 'Disponibile' };
-  const icons = { road: '↗', haunts: '♠', everholm: '✳', application: '▤' };
+  const icons = { road: '◇', haunts: '♠', everholm: '✳', application: '▤' };
   const themes = {road:'rose', haunts:'violet', everholm:'mint', application:'ochre'};
   const list = $('#archive-list');
   document.querySelector('.archive-footer')?.remove(); // v4.11: elimina il blocco informativo obsoleto.
@@ -17,7 +17,7 @@
       const cssStatus = g.isDemo ? 'unknown' : g.status;
       const path = `giochi/${encodeURIComponent(g.id)}.html`;
       const cover = g.coverUrl ? `<img class="item-cover steam-cover" src="${safeText(g.coverUrl)}" ${g.coverFallbackUrl ? `data-backup="${safeText(g.coverFallbackUrl)}"` : ''} alt="" loading="lazy" decoding="async">` : '';
-      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span><span class="item-arrow" aria-hidden="true">↗</span></a>`;
+      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span></a>`;
     }).join('');
     list.querySelectorAll('img.steam-cover').forEach(img => {
       img.addEventListener('error', () => {
