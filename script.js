@@ -29,7 +29,6 @@
         }
       });
     });
-    $('#archive-count').textContent = `${filtered.length} ${filtered.length===1?'TITOLO':'TITOLI'} IN VISTA`;
     $('#empty-message').hidden = filtered.length !== 0;
     list.hidden = filtered.length === 0;
   }
