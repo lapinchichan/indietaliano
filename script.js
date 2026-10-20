@@ -6,6 +6,7 @@
   const icons = { road: '↗', haunts: '♠', everholm: '✳', application: '▤' };
   const themes = {road:'rose', haunts:'violet', everholm:'mint', application:'ochre'};
   const list = $('#archive-list');
+  document.querySelector('.archive-footer')?.remove(); // v4.11: elimina il blocco informativo obsoleto.
   let currentFilter = 'all';
   function safeText(s){return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function cards() {
