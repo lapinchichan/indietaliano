@@ -64,9 +64,23 @@
     });
     title.replaceChildren(fragment);
   }
-  for(const [key, selector] of [['introText','.simple-hero-inner > p'],['supportTitle','#support-title'],['supportText','.support-intro p']]){
+  for(const [key, selector] of [['introText','.simple-hero-inner > p'],['supportTitle','#support-title']]){
     const value=copy[key];const target=$(selector);
     if(target && typeof value === 'string' && value.trim()) target.textContent=value.trim();
+  }
+  // Mantiene i paragrafi scritti da Sveltia. Mai interpretare contenuti CMS come HTML.
+  if(typeof copy.supportText === 'string' && copy.supportText.trim()){
+    const description=$('#support-description');
+    if(description){
+      const lines=copy.supportText.trim().split(/\r?\n+/).map(s=>s.trim()).filter(Boolean);
+      const fragment=document.createDocumentFragment();
+      lines.forEach(line=>{
+        const p=document.createElement('p');
+        p.textContent=line;
+        fragment.appendChild(p);
+      });
+      description.replaceChildren(fragment);
+    }
   }
   const configuredUrl=window.INDIETALIANO_CONFIG?.donationUrl;
   try {const url=new URL(configuredUrl);if(url.protocol==='https:'){const link=$('#donation-link');link.href=url.href;link.hidden=false;$('#donation-pending').hidden=true;}}catch{}

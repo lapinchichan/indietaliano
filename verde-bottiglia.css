@@ -731,3 +731,75 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible {
   .ig-game-view .ig-facts-grid {column-gap:14px}
   .ig-game-view .ig-section-small {display:none}
 }
+
+
+/* Indietaliano 4.9 | Donazioni editoriali, layout a colonna singola.
+   Mantiene Sveltia CMS come unica fonte dei testi e del link Ko-fi. */
+.home-page #sostieni.support {
+  display:block;
+  border-top:1px solid var(--line);
+  padding-top:clamp(34px,4vw,58px);
+  padding-bottom:clamp(48px,5vw,70px);
+}
+.home-page #sostieni .support-intro {
+  display:grid;
+  grid-template-columns:25px minmax(0,1fr);
+  gap:16px;
+  align-items:start;
+  width:100%;
+  max-width:810px;
+  margin:0 auto;
+}
+.home-page #sostieni .support-symbol {font-size:27px;line-height:1;color:var(--accent);margin-top:4px}
+.home-page #sostieni .support-content {width:100%;min-width:0;max-width:740px}
+.home-page #sostieni .support-content h2 {
+  font-family:var(--display-font);
+  font-size:clamp(31px,3.4vw,47px);
+  font-weight:600;
+  line-height:1.16;
+  letter-spacing:-.035em;
+  color:var(--ink);
+  margin:0 0 22px;
+}
+.home-page #sostieni .support-description {max-width:680px}
+.home-page #sostieni .support-description p {
+  color:var(--muted);
+  font-family:var(--ui-font);
+  font-size:clamp(14px,1.1vw,16px);
+  line-height:1.72;
+  margin:0 0 16px;
+  overflow-wrap:break-word;
+}
+.home-page #sostieni .support-description p:last-child {margin-bottom:0}
+.home-page #sostieni .support-action {
+  justify-self:initial;
+  margin:26px 0 0;
+  max-width:none;
+  min-width:0;
+  width:auto;
+}
+.home-page #sostieni .donation-cta {
+  display:inline-flex;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;
+  width:auto;
+  min-height:51px;
+  max-width:100%;
+  margin:0;
+  padding:15px 19px;
+  white-space:normal;
+  text-decoration:none;
+  font-size:13px;
+  line-height:1.3;
+}
+.home-page #sostieni .donation-cta span {font-size:21px;line-height:1}
+.home-page #sostieni .support-pending {margin:0;max-width:400px}
+@media(max-width:560px){
+  .home-page #sostieni.support {padding-top:35px;padding-bottom:49px}
+  .home-page #sostieni .support-intro {grid-template-columns:18px minmax(0,1fr);gap:11px}
+  .home-page #sostieni .support-symbol {font-size:22px;margin-top:4px}
+  .home-page #sostieni .support-content h2 {font-size:clamp(29px,7.5vw,37px);margin-bottom:16px}
+  .home-page #sostieni .support-description p {font-size:14px;line-height:1.65;margin-bottom:13px}
+  .home-page #sostieni .support-action {margin-top:21px}
+}
