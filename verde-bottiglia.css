@@ -831,3 +831,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible {
   .home-page #sostieni .support-description p {font-size:14px;line-height:1.65;margin-bottom:13px}
   .home-page #sostieni .support-action {margin-top:19px}
 }
+
+/* Indietaliano 4.12 | Miglioria tipografica e proporzioni del blocco Ko-fi. */
+.home-page #sostieni .support-heading h2 {text-wrap:balance}
+@media (min-width:821px) {
+  .home-page #sostieni.support {
+    padding-top:clamp(24px,2.8vw,40px);
+  }
+  .home-page #sostieni .support-intro {
+    align-items:center;
+  }
+  .home-page #sostieni .support-heading h2 {
+    max-width:11.5ch;
+    text-wrap:balance;
+  }
+}
