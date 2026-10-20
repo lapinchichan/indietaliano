@@ -9,6 +9,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Indietaliano · Le storie più belle non hanno barriere">
   <meta property="og:description" content="Traduzioni italiane fatte per passione, soprattutto per quei piccoli giochi che rischiano di passare inosservati.">
+  <!-- Aggiornamento v4.11: catalogo senza riga finale e donazioni editoriali a due colonne. -->
   <title>Indietaliano · Traduzioni italiane per giochi indie</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,10 +20,10 @@
   <link rel="stylesheet" href="retro-editorial.css">
   <link rel="stylesheet" href="typography.css">
   <link rel="stylesheet" href="catalog-v3-7.css?v=380">
-  <link rel="stylesheet" href="verde-bottiglia.css?v=420">
+  <link rel="stylesheet" href="verde-bottiglia.css?v=414">
   <script defer src="games.js?v=380"></script>
   <script defer src="site-config.js?v=371"></script>
-  <script defer src="script.js?v=400"></script>
+  <script defer src="script.js?v=413"></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -65,22 +66,39 @@
         </div>
         <div class="archive-list" id="archive-list" aria-live="polite"></div>
         <div class="empty-message" id="empty-message" hidden><p>Nessun gioco trovato.</p><span>Prova un altro titolo o torna a “Tutti”.</span><button type="button" id="reset-search">Azzera la ricerca ↗</button></div>
-        <div class="archive-footer"><span id="archive-count" aria-live="polite">0 TITOLI IN VISTA</span><span>LE TRADUZIONI RESTANO GRATUITE</span></div>
       </div>
     </section>
 
     <section id="sostieni" class="support section-wrap" aria-labelledby="support-title">
-      <div class="support-intro"><span class="support-symbol" aria-hidden="true">✳</span><div><h2 id="support-title">Ti piace il progetto?</h2><p>Indietaliano nasce per dare spazio anche agli indie meno conosciuti. Ogni traduzione richiede tempo, cura e test: se vuoi, puoi sostenere il progetto con una donazione libera.</p><strong>Le traduzioni restano gratuite per tutti.</strong></div></div>
-      <div class="support-action">
-        <a id="donation-link" class="donation-cta" href="#sostieni" target="_blank" rel="noopener noreferrer" hidden>Lascia un contributo <span aria-hidden="true">↗</span></a>
-        <p id="donation-pending" class="support-pending">Donazioni non ancora attive.</p>
-        <p class="support-small">Anche condividere una patch o segnalare un errore aiuta.</p>
+      <div class="support-intro">
+        <div class="support-heading">
+          <span class="support-symbol" aria-hidden="true">✳</span>
+          <h2 id="support-title">Ti piace quello che faccio?</h2>
+        </div>
+        <div class="support-content">
+          <div class="support-description" id="support-description">
+            <p>Indietaliano nasce dalla passione per quei piccoli giochi che meritano di essere scoperti, anche quando non ricevono tutta l'attenzione che vorrebbero.</p>
+            <p>Le traduzioni sono e resteranno gratuite. Se vuoi sostenere il tempo dedicato a questo progetto, puoi offrirmi un caffè. Senza alcun obbligo.</p>
+          </div>
+          <div class="support-action">
+            <a id="donation-link" class="donation-cta" href="#sostieni" target="_blank" rel="noopener noreferrer" hidden>Offrimi un caffè su Ko-fi <span aria-hidden="true">↗</span></a>
+            <p id="donation-pending" class="support-pending">Donazioni non ancora attive.</p>
+          </div>
+        </div>
       </div>
+    </section>
+    <section id="segnalazioni" class="it-report-teaser section-wrap" aria-labelledby="it-report-teaser-title">
+      <div class="it-report-teaser-heading">
+        <span class="it-report-kicker">FEEDBACK E SEGNALAZIONI</span>
+        <h2 id="it-report-teaser-title">Qualcosa non funziona?</h2>
+      </div>
+      <p>Hai trovato un errore nella traduzione o un problema con una patch? Raccontami cosa succede: mi aiuterai a verificare il problema.</p>
+      <a class="it-report-teaser-link" href="segnalazioni.html">Segnala un problema <span aria-hidden="true">↗</span></a>
     </section>
   </main>
   <footer class="footer">
     <div class="footer-top"><span class="footer-title">indietaliano<span>.</span></span><a href="#inizio">TORNA SU ↑</a></div>
-    <div class="footer-bottom"><p>Un progetto personale e indipendente. I videogiochi appartengono ai rispettivi titolari. Le patch non includono il gioco originale e vengono pubblicate solo dopo le necessarie verifiche.</p><div class="footer-utilities"><a href="admin/">Area gestione ↗</a><span>© <span id="year">2026</span> INDIETALIANO</span></div></div>
+    <div class="footer-bottom"><p>Un progetto personale e indipendente. I videogiochi appartengono ai rispettivi titolari. Le patch non includono il gioco originale e vengono pubblicate solo dopo le necessarie verifiche.</p><div class="footer-utilities"><a href="segnalazioni.html">Segnalazioni</a><a href="admin/">Area gestione ↗</a><span>© <span id="year">2026</span> INDIETALIANO</span></div></div>
   </footer>
 </body>
 </html>

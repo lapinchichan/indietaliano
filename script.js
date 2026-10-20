@@ -3,9 +3,10 @@
   const games = Array.isArray(window.INDIETALIANO_GAMES) ? window.INDIETALIANO_GAMES : [];
   const $ = (q) => document.querySelector(q);
   const label = { 'in-revisione':'In revisione', 'da-verificare': 'Da verificare', 'in-lavorazione': 'In lavorazione', 'in-test': 'In test', 'disponibile': 'Disponibile' };
-  const icons = { road: '↗', haunts: '♠', everholm: '✳', application: '▤' };
+  const icons = { road: '◇', haunts: '♠', everholm: '✳', application: '▤' };
   const themes = {road:'rose', haunts:'violet', everholm:'mint', application:'ochre'};
   const list = $('#archive-list');
+  document.querySelector('.archive-footer')?.remove(); // v4.11: elimina il blocco informativo obsoleto.
   let currentFilter = 'all';
   function safeText(s){return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function cards() {
@@ -16,7 +17,7 @@
       const cssStatus = g.isDemo ? 'unknown' : g.status;
       const path = `giochi/${encodeURIComponent(g.id)}.html`;
       const cover = g.coverUrl ? `<img class="item-cover steam-cover" src="${safeText(g.coverUrl)}" ${g.coverFallbackUrl ? `data-backup="${safeText(g.coverFallbackUrl)}"` : ''} alt="" loading="lazy" decoding="async">` : '';
-      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span><span class="item-arrow" aria-hidden="true">↗</span></a>`;
+      return `<a class="archive-item" href="${path}" aria-label="Apri la scheda di ${safeText(g.title)}"><span class="item-emblem ${themes[g.accent]||'mint'}" aria-hidden="true"><span class="cover-fallback">${icons[g.accent]||'✳'}</span>${cover}</span><span class="item-title"><strong>${safeText(g.title)}</strong><small>${safeText(g.developer)}</small></span><span class="item-genre">${safeText(g.genre)}</span><span class="item-status ${cssStatus}"><span aria-hidden="true">●</span> ${safeText(status)}</span></a>`;
     }).join('');
     list.querySelectorAll('img.steam-cover').forEach(img => {
       img.addEventListener('error', () => {
@@ -29,7 +30,6 @@
         }
       });
     });
-    $('#archive-count').textContent = `${filtered.length} ${filtered.length===1?'TITOLO':'TITOLI'} IN VISTA`;
     $('#empty-message').hidden = filtered.length !== 0;
     list.hidden = filtered.length === 0;
   }
@@ -64,9 +64,23 @@
     });
     title.replaceChildren(fragment);
   }
-  for(const [key, selector] of [['introText','.simple-hero-inner > p'],['supportTitle','#support-title'],['supportText','.support-intro p']]){
+  for(const [key, selector] of [['introText','.simple-hero-inner > p'],['supportTitle','#support-title']]){
     const value=copy[key];const target=$(selector);
     if(target && typeof value === 'string' && value.trim()) target.textContent=value.trim();
+  }
+  // Mantiene i paragrafi scritti da Sveltia. Mai interpretare contenuti CMS come HTML.
+  if(typeof copy.supportText === 'string' && copy.supportText.trim()){
+    const description=$('#support-description');
+    if(description){
+      const lines=copy.supportText.trim().split(/\r?\n+/).map(s=>s.trim()).filter(Boolean);
+      const fragment=document.createDocumentFragment();
+      lines.forEach(line=>{
+        const p=document.createElement('p');
+        p.textContent=line;
+        fragment.appendChild(p);
+      });
+      description.replaceChildren(fragment);
+    }
   }
   const configuredUrl=window.INDIETALIANO_CONFIG?.donationUrl;
   try {const url=new URL(configuredUrl);if(url.protocol==='https:'){const link=$('#donation-link');link.href=url.href;link.hidden=false;$('#donation-pending').hidden=true;}}catch{}
